@@ -2,6 +2,7 @@ package async
 
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.util.{Success, Try, Failure}
 
 object Async {
 
@@ -20,8 +21,9 @@ object Async {
     * In case the given `Future` value was successful, this method
     * should return a successful `Future` with the same value.
     */
-  def recoverFailure(eventuallyX: Future[Int]): Future[Int] =
-    ???
+  def recoverFailure(eventuallyX: Future[Int]): Future[Int] = eventuallyX.recover{
+    case _ => -1
+  }.map(x => x)
 
   /**
     * Perform two asynchronous computation, one after the other. `makeAsyncComputation2`
@@ -35,8 +37,17 @@ object Async {
   def sequenceComputations[A, B](
     makeAsyncComputation1: () => Future[A],
     makeAsyncComputation2: () => Future[B]
-  ): Future[(A, B)] =
-    ???
+  ): Future[(A, B)] = {
+//    makeAsyncComputation1().flatMap{
+//      comp1 => makeAsyncComputation2().map(
+//        comp2 => (comp1, comp2)
+//      )
+//    }
+    for {
+      comp1 <- makeAsyncComputation1()
+      comp2 <- makeAsyncComputation2()
+    } yield (comp1, comp2)
+  }
 
   /**
     * Concurrently perform two asynchronous computations and pair their successful
