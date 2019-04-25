@@ -1,0 +1,3 @@
+The fromFile method returns a BufferedSource, and its getLines method treats “any
+of \r\n, \r, or \n as a line separator (longest match),” so each element in the sequence
+is a line from the file.
