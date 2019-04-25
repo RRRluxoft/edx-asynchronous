@@ -19,14 +19,14 @@ object FileProcessing extends App {
 
   def readFileWithTry(resource: String): Try[List[String]] = {
     Try {
-      Source.fromFile(resource).getLines.toList
+      Source.fromInputStream(getClass.getClassLoader.getResourceAsStream(resource)).getLines.toList
     }
-      .recover(throw new FileNotFoundException(s"{resource} not found"))
+//      .recover(throw new FileNotFoundException(s"${resource} not found"))
   }
 
   println("=========")
 //  readFile(fileName)
-  val file = readFileWithTry("~/Projects/edx/async/src/main/resources/fileopen.txt")
+  val file = readFileWithTry(fileName)
   file match {
     case Success(list) => list.foreach(println)
     case Failure(ex) => println(s"Failed, $ex")
