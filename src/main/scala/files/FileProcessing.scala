@@ -26,7 +26,7 @@ object FileProcessing extends App {
 
   println("=========")
 //  readFile(fileName)
-  val file = readFileWithTry("/home/rlitvishko/Projects/edx/async/src/main/resources/fileopen.txt")
+  val file = readFileWithTry("~/Projects/edx/async/src/main/resources/fileopen.txt")
   file match {
     case Success(list) => list.foreach(println)
     case Failure(ex) => println(s"Failed, $ex")
