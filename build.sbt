@@ -1,6 +1,6 @@
 name := course.value ++ "-" ++ assignment.value
 
-scalaVersion := "2.11.12"
+scalaVersion := "2.12.8"
 
 scalacOptions ++= Seq(
   "-feature",
@@ -29,9 +29,9 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka"        %% "akka-actor-typed"         % akkaVersion,
 
   // Used by protocols assignment
-  "org.fusesource.leveldbjni" % "leveldbjni-all"           % "1.8",
-  "com.github.romix.akka"    %% "akka-kryo-serialization"  % "0.5.0",
-  "com.typesafe.akka"        %% "akka-actor-testkit-typed" % akkaVersion % Test,
+//  "org.fusesource.leveldbjni" % "leveldbjni-all"           % "1.8",
+//  "com.github.romix.akka"    %% "akka-kryo-serialization"  % "0.5.0",
+//  "com.typesafe.akka"        %% "akka-actor-testkit-typed" % akkaVersion % Test,
 
   "org.scalacheck"           %% "scalacheck"               % "1.13.5"    % Test,
   "junit"                    % "junit"                     % "4.10"      % Test
